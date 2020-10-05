@@ -1,0 +1,6 @@
+[submodule "static-file-server"]
+	path = static-file-server
+	url = https://github.com/ichisadashioko/static-file-server
+[submodule "scripts"]
+	path = scripts
+	url = https://github.com/ichisadashioko/scripts
