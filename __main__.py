@@ -1,32 +1,43 @@
-import socketserver
+#!/usr/bin/env python3
+# encoding=utf-8
+import os
+import sys
+import argparse
+import http
+import http.server
+from functools import partial
 
+from staticfileserver import StaticFileServer
 
-class MyTCPHandler(socketserver.BaseRequestHandler):
-    """
-    The request handler class for our server.
+class InspectionServer(StaticFileServer):
 
-    It is instantiated once per connection to the server, and must
-    override the handle() method to implement communication to the
-    client.
-    """
+    def do_POST(self):
+        print(self.path)
+        pass
 
-    def handle(self):
-        # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
-        print(type(self.request))
-        print(f'{self.client_address[0]} wrote:')
-        print(self.data)
-        # just send back the same data, but upper-cased
-        self.request.sendall(self.data.upper())
+parser = argparse.ArgumentParser()
 
+parser.add_argument('port', action='store', nargs='?', default=8080, type=int)
+parser.add_argument('--directory', '-d', default=os.getcwd())
 
-if __name__ == '__main__':
-    HOST, PORT = 'localhost', 9999
+args = parser.parse_args()
+print(args)
 
-    print(f'Starting server at {HOST}:{PORT}')
+if not os.path.exists(args.directory):
+    raise Exception(args.directory, 'does not exist!')
 
-    # create the server, binding to localhost on port 9999
-    with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
-        # activate the server; this will keep running until you
-        # interrupt the program with Ctrl-C
-        server.serve_forever()
+if os.path.isfile(args.directory):
+    raise Exception(args.directory, 'is a file!')
+
+serve_directory = os.path.abspath(args.directory)
+
+handler_class = partial(InspectionServer, directory=serve_directory)
+
+with http.server.ThreadingHTTPServer(('localhost', args.port), handler_class) as httpd:
+    print(f'Serving \"{serve_directory}\" at http://localhost:{args.port}')
+
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print('\nKeyboard interrupt received, exiting.')
+        sys.exit(0)
