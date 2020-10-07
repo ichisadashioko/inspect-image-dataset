@@ -1,3 +1,7 @@
+import * as glMatrix from './jslibs/gl-matrix/src/index.js'
+
+console.log(glMatrix)
+
 /**
  * @type {HTMLCanvasElement}
  */
