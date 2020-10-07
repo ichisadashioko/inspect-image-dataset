@@ -19,6 +19,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # just send back the same data, but upper-cased
         self.request.sendall(self.data.upper())
 
+
 if __name__ == '__main__':
     HOST, PORT = 'localhost', 9999
 
