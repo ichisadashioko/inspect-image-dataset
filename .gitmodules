@@ -4,6 +4,3 @@
 [submodule "scripts"]
 	path = scripts
 	url = https://github.com/ichisadashioko/scripts
-[submodule "jslibs/gl-matrix"]
-	path = jslibs/gl-matrix
-	url = https://github.com/ichisadashioko/gl-matrix
