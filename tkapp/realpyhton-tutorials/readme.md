@@ -63,3 +63,15 @@ Nothing seems to happen, but notice that a new prompt does not appear in the she
 `window.mainloop()` tells Python to run the Tkinter __event loop__. This method listens for events such as button clicks or keypresses, and __blocks__ any code that comes after it from running until the window it's called on is closed. Go head and close the window you're created, and you'll see a new prompt displayed in the shell.
 
 Creating a window with Tkinter only takes a couple of line of code. But blank windows aren't very useful! In the next section, you'll learn about some of the widgets available in Tkinter, and how you can customize them to meet your application's needs.
+
+# Working With Widgets
+
+Widgets are the bread and butter of the Python GUI framework Tkinter. They are the elements through which users interact with your program. Each __widget__ in Tkinter is defined by a class. Here are some of the widgets available:
+
+| Widget Class | Description |
+|--------------|-------------|
+| `Label` | A widget used to display text on the screen |
+| `Button` | A button that can contain text and can perform an action when clicked |
+| `Entry` | A text entry widget that allows only a single line of text |
+| `Text` | A text entry widget that allows multiline text entry |
+| `Frame` | A rectangular region used to group related widgets or providing padding between widgets |
