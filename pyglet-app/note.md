@@ -1,0 +1,1 @@
+- `pyglet` uses `bottom-left` as the origin of the coordinate system which is very annoying with computer graphics convention (`top-left`).
