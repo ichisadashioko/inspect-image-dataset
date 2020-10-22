@@ -1,0 +1,10 @@
+{
+  "name": "electron-app",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "dependencies": {
+    "electron": "10.1.4",
+    "typescript": "^4.0.3"
+  }
+}
