@@ -1,3 +1,7 @@
+# Purpose
+
+Create a program for cleaning image dataset (cropping).
+
 # setup
 
 ```
